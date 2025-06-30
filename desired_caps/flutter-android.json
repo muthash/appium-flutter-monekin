@@ -1,0 +1,11 @@
+{
+    "platformName": "Android",
+    "platformVersion": "11",
+    "deviceName": "Pixel_3a_API_30_x86",
+    "automationName": "flutter",
+    "app": "app-debug.apk",
+    "noReset": true,
+    "flutterReplayTimeout": 10000,
+    "flutterReplayInterval": 500,
+    "appium:newCommandTimeout": 3600
+}
