@@ -1,22 +1,25 @@
-from finders.flutter_finders import FlutterFinder
+from finders.flutter_finders import FlutterFinderWrapper
 
 
 class DashboardPageObjects:
     def __init__(self, driver):
-        self.driver = driver
-        self.flutter = FlutterFinder(driver)
+        self._driver = driver
+        self._finder = FlutterFinderWrapper(self._driver)
 
     def get_dashboard_title(self):
-        return self.flutter.by_text("Welcome again!")
+        return self._finder.by_text("Welcome again!")
 
     def get_expense_tag(self):
-        return self.flutter.by_text("Expense")
+        return self._finder.by_text("Expense")
 
-    def get_expense_amount(self):
-        return self.flutter.by_text("$0")
+    def get_expense_amount(self, amount="$0"):
+        return self._finder.by_text(amount)
 
     def get_income_tag(self):
-        return self.flutter.by_text("Income")
+        return self._finder.by_text("Income")
+
+    def get_income_amount(self, amount="$0"):
+        return self._finder.by_text(amount)
 
     def get_create_account_button(self):
-        return self.flutter.by_text("Create Account")
+        return self._finder.by_text("Create Account")

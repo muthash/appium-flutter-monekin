@@ -2,7 +2,7 @@
     "platformName": "Android",
     "platformVersion": "11",
     "deviceName": "Pixel_3a_API_30_x86",
-    "automationName": "flutter",
+    "automationName": "Flutter",
     "app": "app-debug.apk",
     "noReset": true,
     "flutterReplayTimeout": 10000,
