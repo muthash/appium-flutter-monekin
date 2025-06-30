@@ -14,8 +14,8 @@ class HomeSelectCountryPageObjects:
             "Your default currency will be used in reports and general charts. You will be able to change the currency and the app language later at any time in the application settings"
         )
 
-    def get_select_currency_dropdown(self):
-        return self._finder.by_text("US Dollar")
+    def get_select_currency_dropdown(self, currency="US Dollar"):
+        return self._finder.by_text(currency)
 
     def get_select_currency_dropdown_search(self):
         return self._finder.by_semantics_label("Tap to search")

@@ -42,27 +42,36 @@ class FlutterFinderWrapper:
         back_finder = self._finder.page_back()
         return FlutterElement(self._driver, back_finder)
 
+    def by_ancestor(self, child, ancestor, match_root=False, first_match_only=False):
+        element = self._finder.by_ancestor(
+            serialized_finder=child,
+            matching=ancestor,
+            match_root=match_root,
+            first_match_only=first_match_only,
+        )
+        if not element:
+            raise WebDriverException(
+                f"Ancestor with serialized_finder {child} and matching {ancestor} not found."
+            )
+        return FlutterElement(self._driver, element)
+
+    def by_descendant(self, child, ancestor, match_root=False, first_match_only=False):
+        element = self._finder.by_descendant(
+            serialized_finder=child,
+            matching=ancestor,
+            match_root=match_root,
+            first_match_only=first_match_only,
+        )
+        if not element:
+            raise WebDriverException(
+                f"Descendant with serialized_finder {child} and matching {ancestor} not found."
+            )
+        return FlutterElement(self._driver, element)
+
 
 class FlutterFinderActions:
     def __init__(self, driver):
         self._driver = driver
-
-    def get_locator_type(self, locator_type):
-        """
-        This method returns the locator type based on the input string
-        :param locator_type: it takes locator type as parameter
-        """
-        locator_type = locator_type.lower()
-        if locator_type == "id":
-            return "byValueKey"
-        elif locator_type == "text":
-            return "byText"
-        elif locator_type == "tooltip":
-            return "byTooltip"
-        elif locator_type == "type":
-            return "byType"
-        else:
-            raise ValueError(f"Unsupported locator type: {locator_type}")
 
     def get_text(self, element):
         return element.text

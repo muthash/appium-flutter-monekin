@@ -17,46 +17,41 @@ def test_create_account(driver):
     create_account_pom = CreateAccountPageObjects(driver)
 
     # Navigate to dashboard
-    flutter_page_actions.assert_text(home_pom.get_welcome_title(), "Monekin")
-    flutter_page_actions.tap(home_pom.get_login_button())
-    flutter_page_actions.assert_text(
-        home_select_country_pom.get_sl1_title(), "Select your currency"
+    flutter_page_actions.assert_element_present(home_pom.get_logo_icon())
+    flutter_page_actions.click_element(home_pom.get_login_button())
+
+    flutter_page_actions.assert_element_present(home_select_country_pom.get_sl1_title())
+    flutter_page_actions.click_element(home_select_country_pom.get_next_button())
+
+    flutter_page_actions.assert_element_present(home_data_policy_pom.get_sl2_title())
+    flutter_page_actions.click_element(home_data_policy_pom.get_next_button())
+
+    flutter_page_actions.assert_element_present(
+        home_contact_notice_pom.get_last_slide_title()
     )
-    flutter_page_actions.tap(home_select_country_pom.get_next_button())
-    flutter_page_actions.assert_text(
-        home_data_policy_pom.get_sl2_title(), "Safe, private and reliable"
-    )
-    flutter_page_actions.tap(home_data_policy_pom.get_next_button())
-    flutter_page_actions.assert_text(
-        home_contact_notice_pom.get_last_slide_title(), "All ready"
-    )
-    flutter_page_actions.tap(home_contact_notice_pom.get_continue_button())
-    flutter_page_actions.assert_text(
-        dashboard_pom.get_dashboard_title(), "Welcome again!"
-    )
+    flutter_page_actions.click_element(home_contact_notice_pom.get_continue_button())
+
+    flutter_page_actions.assert_element_present(dashboard_pom.get_dashboard_title())
+    flutter_page_actions.assert_element_present(dashboard_pom.get_expense_tag())
 
     # Navigate to create account page
-    flutter_page_actions.tap(dashboard_pom.get_create_account_button())
+    flutter_page_actions.click_element(dashboard_pom.get_create_account_button())
 
     # create account
-    flutter_page_actions.assert_text(
-        create_account_pom.get_create_account_title(), "Create Account"
+    flutter_page_actions.assert_element_present(
+        create_account_pom.get_create_account_title()
     )
-    flutter_page_actions.enter_text(create_account_pom.get_account_name_input, " Rent")
     flutter_page_actions.enter_text(
-        create_account_pom.get_initial_balance_input, "1000"
+        create_account_pom.get_account_name_field(), "Samson Sam"
     )
-    flutter_page_actions.tap(create_account_pom.get_currency_dropdown())
     flutter_page_actions.enter_text(
-        create_account_pom.get_select_currency_dropdown_search(), "Kenya Shilling"
+        create_account_pom.get_initial_balance_field(), "1000"
     )
-    flutter_page_actions.tap(
-        create_account_pom.get_select_currency_dropdown_item("Kenya Shilling")
-    )
-    flutter_page_actions.tap(create_account_pom.get_select_currency_dropdown_save())
-    flutter_page_actions.tap(create_account_pom.get_currency_type())
-    flutter_page_actions.tap(create_account_pom.get_create_account_button())
+    flutter_page_actions.click_element(create_account_pom.get_account_type())
+    flutter_page_actions.click_element(create_account_pom.get_create_account_button())
 
-    flutter_page_actions.assert_text(
-        dashboard_pom.get_dashboard_title(), "Welcome again!"
+    flutter_page_actions.assert_element_present(dashboard_pom.get_dashboard_title())
+    flutter_page_actions.assert_element_present(dashboard_pom.get_income_tag())
+    flutter_page_actions.assert_element_present(
+        dashboard_pom.get_total_balance_amount(amount="Ksh1000")
     )

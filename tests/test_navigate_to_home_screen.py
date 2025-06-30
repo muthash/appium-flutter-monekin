@@ -12,7 +12,7 @@ def test_navigate_to_home_screen(driver):
     home_select_country_pom = HomeSelectCountryPageObjects(driver)
     home_data_policy_pom = HomeDataPolicyPageObjects(driver)
     home_contact_notice_pom = HomeContactNoticePageObjects(driver)
-    dashboard = DashboardPageObjects(driver)
+    dashboard_pom = DashboardPageObjects(driver)
 
     # Verify the app is launched and the home page is displayed
     flutter_page_actions.assert_element_present(home_pom.get_logo_icon())
@@ -82,5 +82,5 @@ def test_navigate_to_home_screen(driver):
     flutter_page_actions.click_element(home_contact_notice_pom.get_continue_button())
 
     # Assert Dashboard is displayed
-    flutter_page_actions.assert_element_present(dashboard.get_dashboard_title())
-    flutter_page_actions.assert_element_present(dashboard.get_expense_tag())
+    flutter_page_actions.assert_element_present(dashboard_pom.get_dashboard_title())
+    flutter_page_actions.assert_element_present(dashboard_pom.get_expense_tag())
