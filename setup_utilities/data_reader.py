@@ -13,17 +13,9 @@ class DataReader:
     def __init__(self):
         self.cur_path = os.path.abspath(os.path.dirname(__file__))
         self.flutter_android_caps = os.path.join(
-            self.cur_path, r"../desired_caps/flutter-android.json"
+            self.cur_path, r"../desired_caps/android.json"
         )
-        self.flutter_ios_caps = os.path.join(
-            self.cur_path, r"../desired_caps/flutter-ios.json"
-        )
-        self.native_android_caps = os.path.join(
-            self.cur_path, r"../desired_caps/native-android.json"
-        )
-        self.native_ios_caps = os.path.join(
-            self.cur_path, r"../desired_caps/native-ios.json"
-        )
+        self.flutter_ios_caps = os.path.join(self.cur_path, r"../desired_caps/ios.json")
 
     @staticmethod
     def load_json_data(json_file):
@@ -42,10 +34,8 @@ class DataReader:
 
     def get_desired_caps(self, platform):
         desired_caps = {
-            "flutter_android": self.load_json_data(self.flutter_android_caps),
-            "flutter_ios": self.load_json_data(self.flutter_ios_caps),
-            "native_android": self.load_json_data(self.native_android_caps),
-            "native_ios": self.load_json_data(self.native_ios_caps),
+            "android": self.load_json_data(self.flutter_android_caps),
+            "ios": self.load_json_data(self.flutter_ios_caps),
         }
         return desired_caps.get(
             platform, self.load_json_data(self.flutter_android_caps)

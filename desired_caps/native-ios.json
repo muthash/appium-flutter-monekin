@@ -1,9 +1,0 @@
-{
-  "platformName": "iOS",
-  "platformVersion": "16.4",
-  "deviceName": "iphone_14_pro_ios_16.4",
-  "automationName": "XCUITest",
-  "app": "",
-  "noReset": false,
-  "fullReset": false
-}

@@ -16,10 +16,8 @@ def driver(request, platform):
 @pytest.fixture(scope="session")
 def platform(request):
     plat = request.config.getoption("--platform").lower()
-    if plat not in ["flutter_ios", "flutter_android", "native_android", "native_ios"]:
-        raise ValueError(
-            "platform value must be in ['flutter_ios', 'flutter_android', 'native_android', 'native_ios']"
-        )
+    if plat not in ["ios", "android"]:
+        raise ValueError("platform value must be in ['ios', 'android']")
     return plat
 
 

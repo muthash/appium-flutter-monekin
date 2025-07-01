@@ -26,14 +26,12 @@ class DriverFactory:
     def get_driver_instance(self):
         desired_caps = self.data_reader.get_desired_caps(self.platform)
         app_location = os.path.join(self.cur_path, r"../apps/", desired_caps["app"])
-        
+
         desired_caps["app"] = app_location
 
         options_caps = {
-            "flutter_android": AppiumOptions().load_capabilities(desired_caps),
-            "flutter_ios": AppiumOptions().load_capabilities(desired_caps),
-            "native_android": UiAutomator2Options().load_capabilities(desired_caps),
-            "native_ios": XCUITestOptions().load_capabilities(desired_caps),
+            "android": AppiumOptions().load_capabilities(desired_caps),
+            "ios": AppiumOptions().load_capabilities(desired_caps),
         }
 
         return webdriver.Remote(
